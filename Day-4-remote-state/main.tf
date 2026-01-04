@@ -3,17 +3,17 @@ resource "aws_instance" "name" {
     instance_type ="t2.micro"
     
     tags = {
-        Name = "Firstec2"
+        Name = "First2"
     }
     
 }
-# resource "aws_instance" "test" {
-#     ami           = "ami-068c0051b15cdb816"
-#     instance_type ="t2.medium"
-#     tags = {
-#         Name = "mysecondec2"
-# }
-# }
+resource "aws_instance" "test" {
+    ami           = "ami-068c0051b15cdb816"
+    instance_type ="t2.medium"
+    tags = {
+        Name = "second2"
+}
+}
 # resource "aws_s3_bucket" "name" {
 #     bucket = "kshghdbdhdhjchxgxxhcjjc"
   
