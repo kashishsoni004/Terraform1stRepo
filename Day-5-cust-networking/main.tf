@@ -30,12 +30,12 @@ resource "aws_route_table" "name" {
     tags = {
         Name = "cust-route-table"
     }
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = aws_internet_gateway.name.id
 }
-resource "aws_route" "name" {
-    route_table_id = aws_route_table.name.id
-    destination_cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.name.id
 }
+
 resource "aws_route_table_association" "name" {
     subnet_id = aws_subnet.name.id
     route_table_id = aws_route_table.name.id
@@ -60,18 +60,17 @@ resource "aws_route_table" "name2" {
     tags = {
         Name = "private-route-table"
     }
+    route  {
+        cidr_block = "0.0.0.0/0"
+        nat_gateway_id = aws_nat_gateway.name.id
 }
-
-resource "aws_route" "name2" {
-    route_table_id = aws_route_table.name2.id
-    destination_cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.name.id
 }
 
 resource "aws_route_table_association" "name2" {
     route_table_id = aws_route_table.name2.id
     subnet_id = aws_subnet.name2.id
 }
+
 resource "aws_security_group" "name" {
     name        = "allow_http_ssh"
     description = "Allow HTTP and SSH inbound traffic"
