@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+   
+    stages {
+        stage('git checkout') {
+            steps {
+              git branch: 'main', url: 'https://github.com/kashishsoni004/Terraform1stRepo.git'
+            }
+        }
+        stage('terraform init') {
+            
+            steps {
+                dir('Day-1') {
+               sh 'terraform init'
+            }
+        }
+        }
+           stage('terraform plan') {
+            
+            steps {
+                dir('Day-1') {
+               sh 'terraform plan'
+            }
+        }
+           }
+        stage('terraform apply') {
+            
+            steps {
+                dir('Day-1') {
+               sh 'terraform apply -auto-approve'
+            }
+        }
+        }
+        
+        }
+    }
